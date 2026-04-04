@@ -15,6 +15,10 @@ export default function Summary({ userAnswers }) {
             <h2>Quiz Completed!</h2>
             <div id='summary-stats'>
                 <p>
+                    <span className='number'>{skippedAnswersShare}%</span>
+                    <span className='text'>of questions skipped</span>
+                </p>
+                <p>
                     <span className='number'>{correctAnswersShare}%</span>
                     <span className='text'>of questions answered correctly</span>
                 </p>
@@ -24,12 +28,12 @@ export default function Summary({ userAnswers }) {
                 </p>
             </div>
             <ol>
-                {userAnswers.map(() => {
+                {userAnswers.map((answer, index) => {
                     let cssClass = 'user-answer';
 
                     if(answer === null) {
                         cssClass += ' skipped';
-                    } else if (answer === QUESTIONS[index].correctAnswer) {
+                    } else if (answer === QUESTIONS[index].answers[0]) {
                         cssClass += ' correct';
                     } else {
                         cssClass += ' wrong';
